@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Blind Love</title>
+    <link rel="shortcut icon" type="image/png" href="../assets/img/heart.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/start.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/wait.css">
+</head>
+<body>
+
+
+    <div id="playing">
+        <div id="settings"><i class="fas fa-cog"></i></div>
+        <div id="settings-display">
+            <div id="close-settings-display">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="text-center mt-4">Options</h2>
+            <h6 style="font-size:1.2rem; text-align: center" class="mt-4">Rules</h6>
+            <div id="settings-rules" class="py-3">
+                Every player will have a <b>Dating Name</b> and <b>Bio</b> which is publicly displayed. Every player
+                will also have a <b>Real Name</b> which is a name hidden from the public. The more <b>Real Names</b> of the players you know,
+                the more you'll be at an advantage.
+                <br><br>
+                The objective of this game is to earn as many <b>Hearts (points)</b> as you can.<br><br>
+                Each round is <b>1 min 30 secs</b> long.
+                And in every round, each player has an option choose up to <b>3 people to date</b>.
+                <br><br>
+                Players earn points from the following:
+                <br>
+                If you date someone and they also date you, <b>NO Hearts</b> are earned by either party. Instead, the other player's <b>Real Name</b> is
+                revealed to each other.
+                <br>
+                If you date someone and they choose not to date you, they have <b>rejected</b> you.
+                They earn <b>1 Heart</b> while you earn <b>NO Hearts</b>. However, since you were rejected, that player's
+                <b>Real Name</b> is revealed to you.
+                <br>
+                If you do not choose to date anyone, you lose <b>2 Hearts</b> for being single.
+                <br><br>
+                Every player also has a <b>Target Date</b> whose <b>Real Name</b> is revealed (not their <b>Dating Name</b>).
+                If you successfully dates your target, meaning your target also chooses to date you, you earn
+                <b>5 Hearts</b> and have a new target.
+                <br>
+                However, if you choose to date your <b>Target</b> but are rejected, you still earn <b>3 Hearts</b> and have a new
+                target.
+            </div>
+            <div class="row mt-5">
+                <div class="col-6" align="center">
+                    <button class="button-1" id="end-game-button">End Game</button>
+                </div>
+                <div class="col-6" align="center">
+                    <button class="button-1" id="leave-game-button">Leave Game</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="bio"></div>
+        <div id="bio-display">
+            <div id="close-bio-display">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="text-center mt-4" id="bio-rname"></h2>
+            <h6 class="text-center" id="bio-dname"></h6>
+            <p class="text-center" id="bio-bio"></p>
+            <h3 class="text-center"><span id="bio-hearts"></span> <i class="fas fa-heart" style="color:#ff7b92;"></i></h3>
+            <h5 class="text-center mt-3" id="bio-target-wrapper">Target<br><span id="bio-target"></span></h5>
+            <p class="text-center mt-3 mb-0">Previous Dates</p>
+            <div id="bio-prevDates" class="text-center">
+                <p>Dating Name (Real Name)</p>
+            </div>
+        </div>
+
+
+        <div id="datingDisplay">
+            <div id="info">
+                <h1 id="timer" class="text-center">0:10</h1>
+                <h3 id="dating-name" class="text-center"></h3>
+                <p id="dating-bio"></p>
+                <hr style="background-color:#ffa3a3">
+            </div>
+            <div id="search" class="mt-2">
+                <h5 class="text-center">Choose Your Date!</h5>
+                <h6 class="text-center">Dates Remaining: <span id="dates-remaining" class="font-weight-bold">3</span></h6>
+                <div class="mt-4" id="searchholder">
+                    <input type="text" id="searchbar" placeholder="Search for date..." title="Type in a name">
+                </div>
+                <div id="date-list">
+                </div>
+            </div>
+        </div>
+
+        <div id="datingResults">
+            <h2 class="text-center" id="res-title">Round Results</h2>
+            <h4 class="text-center my-3" id="leaderboard-button"><i class="fas fa-crown"></i> Leaderboard <i class="fas fa-crown"></i></h4>
+            <h5 class="text-center">Next round in <span id="nextRoundTimer">10</span></h5>
+            <hr>
+            <br>
+            <h5 class="text-center">Your Dates</h5>
+            <div id="res-date-choices">
+            </div>
+            <br>
+            <h5 class="text-center">Your Rejections</h5>
+            <div id="res-rejects" class="mb-5">
+            </div>
+        </div>
+        <div id="leaderboardDisplay">
+            <div id="close-leaderboard">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="text-center mt-4">Leaderboard</h2>
+            <div id="leaderboard-players" class="py-3">
+            </div>
+        </div>
+    </div>
+
+    <div id="start">
+        <div id="rules">
+            <i class="fas fa-question-circle"></i>
+        </div>
+        <div id="rule-display">
+            <div id="close-rule-display">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="text-center mt-4">Rules</h2>
+            <div id="rule-traditional" class="mt-3 py-3">
+                Every player will have a <b>Dating Name</b> and <b>Bio</b> which is publicly displayed. Every player
+                will also have a <b>Real Name</b> which is a name hidden from the public. The more <b>Real Names</b> of the players you know,
+                the more you'll be at an advantage.
+                <br><br>
+                The objective of this game is to earn as many <b>Hearts (points)</b> as you can.<br><br>
+                Each round is <b>1 min 30 secs</b> long.
+                And in every round, each player has an option choose up to <b>3 people to date</b>.
+                <br><br>
+                Players earn points from the following:
+                <br>
+                If you date someone and they also date you, <b>NO Hearts</b> are earned by either party. Instead, the other player's <b>Real Name</b> is
+                revealed to each other.
+                <br>
+                If you date someone and they choose not to date you, they have <b>rejected</b> you.
+                They earn <b>1 Heart</b> while you earn <b>NO Hearts</b>. However, since you were rejected, that player's
+                <b>Real Name</b> is revealed to you.
+                <br>
+                If you do not choose to date anyone, you lose <b>2 Hearts</b> for being single.
+                <br><br>
+                Every player also has a <b>Target Date</b> whose <b>Real Name</b> is revealed (not their <b>Dating Name</b>).
+                If you successfully dates your target, meaning your target also chooses to date you, you earn
+                <b>5 Hearts</b> and have a new target.
+                <br>
+                However, if you choose to date your <b>Target</b> but are rejected, you still earn <b>3 Hearts</b> and have a new
+                target.
+
+            </div>
+        </div>
+        <h2 class="mt-5 mb-3 text-center">Blind Love <i class="fas fa-heartbeat" style="color:red;"></i></h2>
+        <h6 class="text-center mb-3"><i>- Close your eyes and swipe right</i></h6>
+        <h6 class="text-center mb-4">By Jacob Zhang</h6>
+        <div id="start-buttons" class="row">
+            <div class="col-md-6 col-sm-12">
+                <button id="start-create" class="start-button">New Game</button>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <button id="start-join" class="start-button">Join Game</button>
+            </div>
+        </div>
+        <div id="start-join-display">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" aria-label="Large" id="start-join-roomid"
+                       aria-describedby="inputGroup-sizing-sm" placeholder="Room ID" maxlength="4">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control"  aria-describedby="inputGroup-sizing-default"
+                       placeholder="Name" maxlength="17" id="start-join-name">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Dating Handle" maxlength="17" id="start-join-dname">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Bio (150 chars)" maxlength="150" id="start-join-bio">
+            </div>
+            <h5 id="start-join-error" class="mt-3">
+
+            </h5>
+            <div id="start-join-button" class="row mt-5">
+                <div class="col-6">
+                    <button class="button-1" id="start-join-game-button">
+                        Join
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="button-1 start-back-button">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="start-create-display">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" aria-label="Large" id="start-create-roomid"
+                       aria-describedby="inputGroup-sizing-sm" placeholder="Create Room ID" maxlength="4">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Name" maxlength="17" id="start-create-name">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Dating Handle" maxlength="17" id="start-create-dname">
+            </div>
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Bio (150 chars)" maxlength="150" id="start-create-bio">
+            </div>
+            <h5 id="start-create-error" class="mt-3">
+            </h5>
+            <div id="start-create-button" class="row mt-5">
+                <div class="col-6">
+                    <button class="button-1" id="start-create-game-button">
+                        Create
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="button-1 start-back-button">
+                        Back
+                    </button>
+                </div>
+            </div>
+        </div>
+        <h6 id="link-to-repo">
+            <!-- TODO -->
+            <a href="https://github.com/Jsbbvk/" target="_blank">
+                Link to Github</a>
+        </h6>
+    </div>
+
+    <div id="waiting-room" class="my-5">
+        <div id="waiting-rules">
+            <i class="fas fa-question-circle"></i>
+        </div>
+        <div id="prevScoreB" class="text-center">
+            <h6>Previous<br>Score</h6>
+        </div>
+        <div id="prevScoreDisplay">
+            <div id="close-prevScore-display">
+                <i class="fas fa-times"></i>
+            </div>
+            <h3 class="text-center pt-3">Scoreboard</h3><br>
+            <div id="prevScoreDisplayP" class="text-center">
+            </div>
+        </div>
+        <div id="waiting-rule-display">
+            <div id="waiting-close-rule-display">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2 class="text-center mt-4">Rules</h2>
+            <div id="waiting-rule-traditional" class="mt-3 py-3">
+                Every player will have a <b>Dating Name</b> and <b>Bio</b> which is publicly displayed. Every player
+                will also have a <b>Real Name</b> which is a name hidden from the public. The more <b>Real Names</b> of the players you know,
+                the more you'll be at an advantage.
+                <br><br>
+                The objective of this game is to earn as many <b>Hearts (points)</b> as you can.<br><br>
+                Each round is <b>1 min 30 secs</b> long.
+                And in every round, each player has an option choose up to <b>3 people to date</b>.
+                <br><br>
+                Players earn points from the following:
+                <br>
+                If you date someone and they also date you, <b>NO Hearts</b> are earned by either party. Instead, the other player's <b>Real Name</b> is
+                revealed to each other.
+                <br>
+                If you date someone and they choose not to date you, they have <b>rejected</b> you.
+                They earn <b>1 Heart</b> while you earn <b>NO Hearts</b>. However, since you were rejected, that player's
+                <b>Real Name</b> is revealed to you.
+                <br>
+                If you do not choose to date anyone, you lose <b>2 Hearts</b> for being single.
+                <br><br>
+                Every player also has a <b>Target Date</b> whose <b>Real Name</b> is revealed (not their <b>Dating Name</b>).
+                If you successfully dates your target, meaning your target also chooses to date you, you earn
+                <b>5 Hearts</b> and have a new target.
+                <br>
+                However, if you choose to date your <b>Target</b> but are rejected, you still earn <b>3 Hearts</b> and have a new
+                target.
+            </div>
+        </div>
+
+        <div id="change-name">
+            <h4 class="text-center mt-3">Change Profile</h4>
+            <div id="change-name-close">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <label for="change-name-rname" class="mt-4">Real Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Real Name" maxlength="17" id="change-name-rname">
+            </div>
+            <label for="change-name-dname" class="mt-4">Dating Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Dating Name" maxlength="17" id="change-name-dname">
+            </div>
+            <label for="change-name-bio" class="mt-4">Bio</label>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                       placeholder="Bio" maxlength="150" id="change-name-bio">
+            </div>
+            <button class="button-1" id="change-name-save-button">Save</button>
+            <br>
+            <button class="button-1" id="change-name-cancel-button">Cancel</button>
+        </div>
+        <div id="waiting-display">
+            <h1>Players</h1>
+            <h5>Room ID:
+                <b><span id="wait-roomCode"></span></b>
+            </h5>
+            <ol class="row mt-5" id="waiting-player-list">
+            </ol>
+            <div id="waiting-buttons" class="row mt-5">
+                <div class="col-6">
+                    <button class="button-1" id="startButton">
+                        Start
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="button-1" id="leaveButton">
+                        Leave
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="../socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+</script>
+<script src="../assets/js/socket.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/start.js"></script>
+
+</body>
+</html>

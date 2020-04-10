@@ -1,0 +1,572 @@
+@import url('https://fonts.googleapis.com/css?family=Damion&display=swap');
+
+
+* {
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+#end-game-button, #leave-game-button {
+    padding: 6px 8px;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale( 1.25);
+    }
+    20% {
+        transform: scale( 1);
+    }
+    40% {
+        transform: scale(1.25);
+    }
+    60% {
+        transform: scale( 1);
+    }
+    80% {
+        transform: scale( 1.25);
+    }
+    100% {
+        transform: scale( 1.25);
+    }
+}
+
+#bio {
+    font-size: 4vh;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    width: 30px;
+    height: 40px;
+}
+
+#bio.animatePulse {
+    animation: heartbeat 1s infinite;
+}
+
+
+#bio:hover:before, #bio:hover:after {
+    background:#fbacba;
+    cursor: pointer;
+}
+
+
+#bio:before,
+#bio:after {
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: 15px;
+    width: 15px;
+    height: 25px;
+    background: #fb748d;
+    -moz-border-radius: 50px 50px 0 0;
+    border-radius: 50px 50px 0 0;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+
+#bio:after {
+    left: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+
+#playing {
+    margin-top: 2vh;
+    height: 80vh;
+    width: 100vw;
+    display:none;
+}
+
+#datingDisplay {
+    height: 100%;
+    display:none;
+}
+
+#datingResults {
+    display:none;
+}
+
+#leaderboard-button {
+    user-select: none;
+    width: 300px;
+    margin: 0 auto;
+}
+#leaderboard-button:hover {
+    cursor: pointer;
+}
+#leaderboard-button:hover > i {
+    color: #86780b;
+}
+#leaderboard-button > i {
+    color: #e4cd0f;
+}
+
+#info {
+    height: 30%;
+}
+
+#timer {
+    font-size: 10vh;
+    margin-top: 7%;
+    user-select: none;
+}
+
+#dating-name {
+    font-size: 3vh;
+}
+
+#dating-bio {
+    font-size: 10px;
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    font-style: italic;
+}
+
+#settings {
+    font-size: 4vh;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+
+
+#bio-rname {
+    color: #c10425;
+}
+
+#bio-bio {
+    font-style: italic;
+    font-size: 0.7rem;
+}
+
+#bio-target {
+    font-size: 1.4em;
+    background-color: #ffd371;
+    padding: 0 5px;
+}
+
+#bio-prevDates {
+    height: 80px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+#bio-prevDates > p {
+    font-size: 0.7rem;
+}
+#bio-prevDates > p > .bio-drname {
+    background-color: #fcbdbd;
+}
+
+
+#search {
+    height: 70%;
+}
+
+#dates-remaining {
+    color:red;
+}
+
+#searchholder {
+    width: 80%;
+    margin: 0 auto;
+    border: 10px solid transparent;
+    border-image: url('../img/heart.png') 100 round;
+    -webkit-border-image: url('../img/heart.png') 100 round;
+}
+#searchbar {
+    background-image: url('../img/searchheart.png');
+    background-position: 10px 8px;
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    border: 1px solid lightpink;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 45px;
+}
+
+
+
+#date-list {
+    width: 80%;
+    margin: 10px auto 0 auto;
+    border: 1px solid lightpink;
+    padding: 10px 15px;
+    border-radius: 10px;
+    height: 60%;
+    overflow-y: scroll;
+}
+.date-choice {
+    border: 1px solid #ffd7aa;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    margin: 20px 0;
+}
+.date-choice.selectedDate {
+    background-color: #ffe0e0;
+    opacity: 0.4;
+}
+.date-choice-info {
+    width: 78%;
+}
+.date-choice > .date-choice-info > .date-choice-dname {
+    font-size: 0.8rem;
+}
+.date-choice > .date-choice-info > .date-choice-dname > .date-choice-rname {
+    background-color: #fcbdbd;
+}
+.date-choice > .date-choice-info > .date-choice-bio {
+    font-size: 0.6rem;
+    font-style: italic;
+    margin-bottom: 0;
+}
+.date-choice > .date-choice-button {
+    width: 40px;
+    height: 40px;
+    font-size: 0.7rem;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url("../img/heart1.png") no-repeat center/cover;
+    color:white;
+    user-select: none;
+    font-family: 'Damion', cursive;
+
+}
+.date-choice:not(.selectedDate) > .date-choice-button:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+#settings-rules {
+    width: 100%;
+    overflow-y: scroll;
+    height: 50%;
+    font-size: 0.8rem;
+}
+
+#bio-display {
+    border: 2px solid lightpink !important;
+}
+
+#res-title {
+    margin-top: 20%;
+    font-size: 2rem;
+}
+
+
+#nextRoundTimer {
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+
+#res-date-choices, #res-rejects {
+    padding: 10px 20px;
+}
+
+.res-date-name {
+    margin-bottom: 3px;
+}
+
+.res-date-name > .res-date-rname {
+    background-color: #fcbdbd;
+    opacity: 0;
+    animation: fadeIn 1000ms forwards 1.5s;
+    -webkit-animation: fadeIn 1000ms forwards 1.5s;
+    -moz-animation: fadeIn 1000ms forwards 1.5s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@-moz-keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.res-date {
+    border: 2px solid pink;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 15px 0;
+}
+
+.res-date > .res-date-status {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 2px 4px;
+}
+
+.res-date > .res-date-status > .res-date-status-text {
+    width: 80%;
+}
+
+.res-date > .res-date-status > .res-date-status-points {
+    float: right;
+    text-align: right;
+}
+
+.res-date > .res-date-status > .res-date-status-points > .fa-heart {
+    color: red;
+}
+
+.res-date > .res-date-status.selectedTarget {
+    background-color: orange;
+}
+
+.res-date > .res-date-status.gotRejected {
+    background-color: black;
+    color:#ff3838;
+    font-weight: bold;
+}
+
+.res-date > .res-date-status.successfulDate {
+    background-color: pink;
+}
+
+.res-date > .res-date-status.rejected {
+    background-color: #ff5151;
+    color:black;
+}
+.res-date > .res-date-status.rejected .fa-heart {
+    color:black !important;
+}
+
+.res-date > .res-date-status.selectedTarget > .res-date-status-text:after {
+    content: "Found Target";
+}
+
+.res-date > .res-date-status.successfulDate > .res-date-status-text:after {
+    content: "Successful Date";
+}
+
+.res-date > .res-date-status.gotRejected > .res-date-status-text:after {
+    content: "Got rejected";
+}
+
+.res-date > .res-date-status.rejected > .res-date-status-text:after {
+    content: "You rejected";
+}
+
+#res-date-choices > .res-single {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#res-date-choices > .res-single > i {
+    color:red;
+}
+
+#leaderboard-players {
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.leaderboard-p {
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.leaderboard-p-name {
+    width: 70%;
+    display: inline-block;
+}
+
+.leaderboard-p-name > span {
+    background: #fcbdbd;
+}
+
+.leaderboard-p-points {
+    display: inline-block;
+    width: 20%;
+    margin-left: 5%;
+}
+
+.leaderboard-p-points > i {
+    color: red;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .leaderboard-p-name {
+        margin-left: 20px;
+    }
+    .leaderboard-p {
+        margin: 10px auto;
+    }
+    #leaderboard-players {
+        font-size: 1.5em;
+    }
+
+    #bio {
+        top: 30px;
+        width: 60px;
+        right: 30px;
+        height: 40px;
+    }
+
+    #bio:before,#bio:after {
+        left: 20px;
+        width: 20px;
+        height: 35px;
+    }
+
+    #bio:after {
+        left: 0;
+    }
+
+    #res-title {
+        margin-top: 2%;
+        font-size: 3rem;
+    }
+
+    #bio-target-wrapper {
+        margin: 3rem auto !important;
+    }
+
+    #bio-prevDates {
+        height: 150px;
+    }
+
+    #bio-prevDates > p {
+        font-size: 1rem;
+    }
+
+    #bio-rname {
+        font-size: 3rem;
+    }
+    #bio-bio {
+        font-size: 1rem;
+    }
+    #bio-dname {
+        font-size: 1.5rem;
+    }
+
+
+    .date-choice > .date-choice-button {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1rem;
+
+    }
+
+
+    
+    #playing {
+        height: 92vh;
+    }
+
+    #search {
+        margin-top: 2rem !important;
+    }
+
+    #searchbar {
+        font-size: 20px;
+    }
+
+    #searchholder, #date-list, #res-date-choices, #res-rejects {
+        max-width: 600px;
+    }
+
+
+    #res-date-choices, #res-rejects {
+        margin: 0 auto;
+        font-size: 1.5rem;
+    }
+
+    .res-date {
+        padding: 10px 15px;
+    }
+
+
+    .date-choice > .date-choice-info > .date-choice-dname {
+        font-size: 1.3rem;
+    }
+
+    .date-choice > .date-choice-info > .date-choice-bio {
+        font-size: 0.8rem;
+    }
+
+    #timer{
+        font-size: 8rem;
+        margin-top: 50px;
+    }
+
+    #dating-bio {
+        font-size: 0.8rem;
+    }
+
+
+    #settings {
+        left: 30px;
+    }
+
+    #settings-rules {
+        font-size: 0.9rem;
+        height: 60%;
+    }
+
+    #settings-display, #bio-display, #leaderboardDisplay {
+        padding: 20px 100px;
+        width:600px !important;
+    }
+
+    #close-settings-display, #close-, #close-leaderboard {
+        font-size: 1.2rem;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
